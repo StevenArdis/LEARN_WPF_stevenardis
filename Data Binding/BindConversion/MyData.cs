@@ -6,6 +6,9 @@ using System.ComponentModel;
 
 namespace BindConversion
 {
+    /// <summary>
+    /// 这段代码标准写法：通过INotifyPropertyChanged接口，通知界面属性变更
+    /// </summary>
     public class MyData : INotifyPropertyChanged
     {
         private DateTime _thedate;//定义一个datetime型字段，私有
