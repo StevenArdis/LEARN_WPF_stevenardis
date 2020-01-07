@@ -77,7 +77,7 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Description.txt" />
+    <Content Include="Details.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

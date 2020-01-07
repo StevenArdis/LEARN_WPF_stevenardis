@@ -13,13 +13,13 @@ namespace BindConversion
         public object Convert(object o, Type type,
             object parameter, CultureInfo culture)
         {
-            var date = (DateTime) o;
-            switch (type.Name)
+            var date = (DateTime) o;//把o转成DateTime格式后，赋值给date。
+            switch (type.Name)//当type的Name，
             {
-                case "String":
-                    return date.ToString("F", culture);
-                case "Brush":
-                    return Brushes.Red;
+                case "String"://为String时，
+                    return date.ToString("F", culture);//返回
+                case "Brush"://为Brush时，
+                    return Brushes.Red;//刷成红色
                 default:
                     return o;
             }

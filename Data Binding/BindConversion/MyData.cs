@@ -8,9 +8,9 @@ namespace BindConversion
 {
     public class MyData : INotifyPropertyChanged
     {
-        private DateTime _thedate;
+        private DateTime _thedate;//定义一个datetime型字段，私有
 
-        public MyData()
+        public MyData()//定义字段_thedate构造方法，等于当前时间
         {
             _thedate = DateTime.Now;
         }
@@ -21,7 +21,7 @@ namespace BindConversion
             set
             {
                 _thedate = value;
-                OnPropertyChanged("TheDate");
+                OnPropertyChanged("TheDate");//****重点：这个在xaml绑定这个属性的时候
             }
         }
 

@@ -5,28 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BindConversion"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-        <!--标题是MainWindow；高350，宽525-->  
-    <StackPanel Width="300" Height="300" Name="Page1"><!--堆叠面板 宽300 高300 名字：page1-->
-        <StackPanel.Resources>
-            <!--说明面板的元素：1.MyDataSource；2.MyConverterReference-->
-            <local:MyData x:Key="MyDataSource"/><!--本地资源：MyData-->
+        Title="MainWindow" Height="350" Width="525"><!--这里是第一层，标题是MainWindow；高350，宽525-->
+    
+    <StackPanel Width="300" Height="300" Name="Page1"><!--这里是第二层，堆叠面板 宽300 高300 名字：page1-->
+        
+        <StackPanel.Resources><!--这里是第三层，主要声明数据源（x:Key）：1.MyDataSource；2.MyConverterReference-->
+
+            <local:MyData x:Key="MyDataSource"/><!--数据源：MyData-->
             <local:MyConverter x:Key="MyConverterReference"/><!--本地资源MyConverter-->
-            <Style TargetType="TextBlock"><!--样式➡目标类型➡TextBlock-->
+            <Style TargetType="TextBlock"><!--第四层，样式➡目标类型➡TextBlock-->
                 <Setter Property="FontSize" Value="15"/><!--Setter是设置器，用来设置目标属性，在这里指设置字体大小为15-->
                 <Setter Property="Margin" Value="3"/>
             </Style>
         </StackPanel.Resources>
 
-        <StackPanel.DataContext>
-            <Binding Source="{StaticResource MyDataSource}"/><!--数据绑定：指定数据源-->
+        <StackPanel.DataContext><!--这里同为第三层，与上面对应，在这里对上面声明的数据源进行了绑定。-->
+            <Binding Source="{StaticResource MyDataSource}"/><!--在这里用这种写法指定了数据源-->
         </StackPanel.DataContext>
         <!--接下来是并列四个TextBlock-->
-        <TextBlock Text="Unconverted data:"/><!--这个是一个字符串，“未转换的数据”-->
-        <TextBlock Text="{Binding Path=TheDate}"/><!--这个是绑定当前的日期以及时间-->
-        <TextBlock Text="Converted data:"/><!--这个是一个字符串，“已转换的数据”-->
+        <TextBlock Text="Unconverted data:"/><!--这个是一个字符串，显示“未转换的数据”-->
+        <TextBlock Text="{Binding Path=TheDate}"/><!--这个是绑定当前的日期以及时间，未进行格式转换-->
+        <TextBlock Text="Converted data:"/><!--这个是一个字符串，显示“已转换的数据”-->
         <TextBlock Name="myconvertedtext" Foreground="{Binding Path=TheDate, Converter={StaticResource MyConverterReference}}">
-        <!--        ⬆这个是TextBlock的名字    ⬆（前景）？！绑定路径             ⬆转换         ⬆静态资源      ⬆（转换格式？！） -->   
+        <!--        ⬆这个是TextBlock的名字    ⬆（前景）？！绑定路径             ⬆转换     ⬆静态资源      ⬆指向上面声明的第二个数据源 -->   
             <TextBlock.Text><!--这是第四个TextBlock的文本属性-->
                 <Binding Path="TheDate"   Converter="{StaticResource MyConverterReference}"/>
                 <!--绑定路径：TheDate        ⬆转换         ⬆静态资源       -->
@@ -34,4 +35,5 @@
         </TextBlock>
 
     </StackPanel>
+    
 </Window>
