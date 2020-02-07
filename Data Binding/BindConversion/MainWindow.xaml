@@ -27,7 +27,7 @@
         <TextBlock Text="{Binding Path=TheDate}"/><!--这个是绑定当前的日期以及时间，未进行格式转换-->
         <TextBlock Text="Converted data:"/><!--这个是一个字符串，显示“已转换的数据”-->
         <TextBlock Name="myconvertedtext" Foreground="{Binding Path=TheDate, Converter={StaticResource MyConverterReference}}">
-        <!--        ⬆这个是TextBlock的名字    ⬆（前景）？！绑定路径             ⬆转换     ⬆静态资源      ⬆指向上面声明的第二个数据源 -->   
+        <!--        ⬆这个是TextBlock的名字    ⬆（前景）？！      绑定路径                         ⬆转换     ⬆静态资源      ⬆指向上面声明的第二个数据源 -->   
             <TextBlock.Text><!--这是第四个TextBlock的文本属性-->
                 <Binding Path="TheDate"   Converter="{StaticResource MyConverterReference}"/>
                 <!--绑定路径：TheDate        ⬆转换         ⬆静态资源       -->
